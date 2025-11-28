@@ -4,3 +4,6 @@
 .settings
 .theia
 node_modules/*
+.smartui.log
+*.log
+.DS_Store
