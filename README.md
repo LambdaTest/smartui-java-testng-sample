@@ -1,10 +1,10 @@
-# SmartUI SDK Sample for Selenium Java (TestNG)
+# SmartUI SDK Sample for Selenium Java (TestNG) — TestMu AI (Formerly LambdaTest)
 
 Welcome to the SmartUI SDK sample for Selenium Java with TestNG. This repository demonstrates how to integrate SmartUI visual regression testing with Selenium Java using TestNG framework.
 
 ## Get your SmartUI project and token
 
-If you are new to SmartUI, follow [Running Your First Project on SmartUI](https://www.lambdatest.com/support/docs/smartui-running-your-first-project/) to create a project and obtain your **project token** and `smartui-web.json` configuration.
+If you are new to SmartUI, follow [Running Your First Project on SmartUI](https://www.testmuai.com/support/docs/smartui-running-your-first-project/) to create a project and obtain your **project token** and `smartui-web.json` configuration.
 
 ## Repository Structure
 
@@ -31,7 +31,7 @@ smartui-java-testng-sample/
 - Java JDK 1.6 or higher (latest version recommended)
 - Maven 3.6 or higher
 - Node.js (for SmartUI CLI)
-- LambdaTest account credentials (for Cloud tests)
+- TestMu AI account credentials (for Cloud tests)
 - Chrome browser (for Local tests)
 
 ### Environment Setup
@@ -120,7 +120,7 @@ npx smartui --config smartui-web.json exec -- mvn test -D suite=sdk-cloud.xml
 
 ### Cloud Test (`SmartUISDKCloud.java`)
 
-- Connects to LambdaTest Cloud using Selenium Remote WebDriver
+- Connects to TestMu AI Cloud using Selenium Remote WebDriver
 - Reads credentials from environment variables (`LT_USERNAME`, `LT_ACCESS_KEY`)
 - Uses TestNG framework
 - Takes screenshot with name: `screenshot`
@@ -160,7 +160,7 @@ mvn test -D suite=smartui-parallel.xml
 
 ## Testing Locally Hosted Projects
 
-You can test locally hosted or privately hosted projects with LambdaTest Selenium grid using LambdaTest Tunnel. Refer to the [LambdaTest Tunnel documentation](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/) for more information.
+You can test locally hosted or privately hosted projects with TestMu AI Selenium grid using TestMu AI Tunnel. Refer to the [TestMu AI Tunnel documentation](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/) for more information.
 
 ## Best Practices
 
@@ -334,7 +334,7 @@ mvn clean compile
 
 **Solution**:
 1. Verify `LT_USERNAME` and `LT_ACCESS_KEY` are set correctly
-2. Check credentials in [LambdaTest Profile Settings](https://accounts.lambdatest.com/profile)
+2. Check credentials in [TestMu AI Profile Settings](https://accounts.lambdatest.com/profile)
 3. Ensure no extra spaces in environment variables
 
 ### Issue: TestNG suite not found
@@ -408,12 +408,31 @@ After running the tests, visit your SmartUI project dashboard to view the captur
 
 ## Additional Resources
 
-- [SmartUI Selenium Java Onboarding Guide](https://www.lambdatest.com/support/docs/smartui-onboarding-selenium-java/)
-- [LambdaTest Selenium Java Documentation](https://www.lambdatest.com/support/docs/selenium-java/)
+- [SmartUI Selenium Java Onboarding Guide](https://www.testmuai.com/support/docs/smartui-onboarding-selenium-java/)
+- [TestMu AI Selenium Java Documentation](https://www.testmuai.com/support/docs/selenium-java/)
 - [TestNG Documentation](https://testng.org/doc/documentation-main.html)
 - [Maven Documentation](https://maven.apache.org/guides/)
 - [SmartUI Dashboard](https://smartui.lambdatest.com/)
-- [LambdaTest Automation Dashboard](https://automation.lambdatest.com/)
-- [LambdaTest Community](https://community.lambdatest.com/)
-- [LambdaTest Blog](https://www.lambdatest.com/blog/)
-- [LambdaTest Learning Hub](https://www.lambdatest.com/learning-hub/)
+- [TestMu AI Automation Dashboard](https://automation.lambdatest.com/)
+- [TestMu AI Community](https://community.testmuai.com/)
+- [TestMu AI Blog](https://www.testmuai.com/blog/)
+- [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/)
+
+## 🚀 [LambdaTest is Now TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/)
+
+👋 Welcome to TestMu AI, the next evolution of LambdaTest. As of January 2026, LambdaTest has officially rebranded to TestMu AI. We have evolved from a cross-browser testing cloud into a unified, AI-native quality engineering platform designed for the modern DevOps era.
+
+Whether you have been part of the LambdaTest community for years or are just discovering TestMu AI, our mission remains the same: to help you ship faster with high-scale test execution, autonomous testing, and deep quality analytics.
+
+**🔄 Our Rebrand Journey**
+
+We chose the name TestMu AI to reflect our shift towards intelligent, autonomous testing. While our identity has changed, our core technology and commitment to the testing community stay the same.
+
+**✨ Specialties**
+
+- 🤖 AI-Native Test Execution (Formerly LambdaTest)
+- ⚡ Autonomous Test Automation
+- 🌐 Cross-Browser & Mobile Testing
+- 📊 Unified Quality Intelligence
+
+👉 Find [LambdaTest's New Home](https://www.testmuai.com/).
