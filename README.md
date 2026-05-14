@@ -1,448 +1,115 @@
-# SmartUI SDK Sample for Selenium Java (TestNG) — TestMu AI (Formerly LambdaTest)
+# Run SmartUI Visual Tests with Java and TestNG on TestMu AI (Formerly LambdaTest)
 
-Welcome to the SmartUI SDK sample for Selenium Java with TestNG. This repository demonstrates how to integrate SmartUI visual regression testing with Selenium Java using TestNG framework.
+<p align="center">
+  <a href="https://www.testmuai.com/"><img src="https://img.shields.io/badge/MADE%20BY%20TestMu%20AI-000000.svg?style=for-the-badge&labelColor=000" alt="Made by TestMu AI"></a>
+  <a href="https://search.maven.org/artifact/org.testng/testng"><img src="https://img.shields.io/maven-central/v/org.testng/testng.svg?style=for-the-badge&labelColor=000000" alt="TestNG version"></a>
+  <a href="https://community.testmuai.com/"><img src="https://img.shields.io/badge/Join%20the%20community-blueviolet.svg?style=for-the-badge&labelColor=000000" alt="Community"></a>
+</p>
 
-## Get your SmartUI project and token
+## Getting Started
 
-If you are new to SmartUI, follow [Running Your First Project on SmartUI](https://www.testmuai.com/support/docs/smartui-running-your-first-project/) to create a project and obtain your **project token** and `smartui-web.json` configuration.
+[TestMu AI](https://www.testmuai.com/) (Formerly LambdaTest) is the world's first full-stack AI Agentic Quality Engineering platform that empowers teams to test intelligently, smarter, and ship faster. Built for scale, it offers a full-stack testing cloud with 10K+ real devices and 3,000+ browsers. With AI-native test management, MCP servers, and agent-based automation, TestMu AI supports Selenium, Appium, Playwright, and all major frameworks. 
 
-## Repository Structure
+With TestMu AI (Formerly LambdaTest), you can run SmartUI visual regression tests with Java and TestNG on real browsers. This sample shows how to configure Java + TestNG + SmartUI to run on the TestMu AI cloud.
 
-```
-smartui-java-testng-sample/
-├── src/
-│   └── test/
-│       └── java/
-│           └── com/
-│               └── lambdatest/
-│                   └── sdk/
-│                       ├── SmartUISDKCloud.java    # Cloud test
-│                       └── SmartUISDKLocal.java    # Local test
-├── sdk-cloud.xml                                    # TestNG suite for Cloud
-├── sdk-local.xml                                    # TestNG suite for Local
-├── pom.xml                                          # Maven dependencies
-└── smartui-web.json                                # SmartUI config (create with npx smartui config:create)
-```
-
-## 1. Prerequisites and Environment Setup
+- [Sign up on TestMu AI](https://www.testmuai.com/register/) (Formerly LambdaTest).
+- Follow the [TestMu AI Documentation](https://www.testmuai.com/support/docs/) for the full setup walkthrough.
 
 ### Prerequisites
 
-- Java JDK 1.6 or higher (latest version recommended)
-- Maven 3.6 or higher
-- Node.js (for SmartUI CLI)
-- TestMu AI account credentials (for Cloud tests)
-- Chrome browser (for Local tests)
+- Java JDK 11 or higher, Maven (latest stable), and Node.js (for SmartUI CLI)
+- A TestMu AI (Formerly LambdaTest) account with your username and access key
 
-### Environment Setup
+### Setup
 
-**For Cloud:**
-```bash
-export LT_USERNAME='your_username'
-export LT_ACCESS_KEY='your_access_key'
-export PROJECT_TOKEN='your_project_token'
-```
-
-**For Local:**
-```bash
-export PROJECT_TOKEN='your_project_token'
-```
-
-## 2. Initial Setup and Dependencies
-
-### Clone the Repository
+Clone and install dependencies:
 
 ```bash
-git clone https://github.com/LambdaTest/smartui-java-testng-sample
-cd smartui-java-testng-sample
+git clone https://github.com/LambdaTest/smartui-java-testng-sample && cd smartui-java-testng-sample
+mvn install -DskipTests
 ```
 
-### Install Dependencies
+Set your credentials as environment variables.
 
-The repository already includes the required dependencies in `pom.xml`. Build the project to download dependencies:
+**macOS / Linux:**
 
 ```bash
-mvn clean compile
+export LT_USERNAME="YOUR_USERNAME"
+export LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+export LT_TUNNEL="YOUR_TUNNEL_NAME"
+export PROJECT_TOKEN="YOUR_PROJECT_TOKEN"
 ```
 
-**Dependencies included:**
-- `io.github.lambdatest:lambdatest-java-sdk` - SmartUI SDK for Selenium Java
-- `org.testng:testng` - TestNG testing framework
-- `org.seleniumhq.selenium:selenium-java` - Selenium WebDriver
-
-### Install SmartUI CLI
+**Windows:**
 
 ```bash
-npm i @lambdatest/smartui-cli
+set LT_USERNAME="YOUR_USERNAME"
+set LT_ACCESS_KEY="YOUR_ACCESS_KEY"
+set LT_TUNNEL="YOUR_TUNNEL_NAME"
+set PROJECT_TOKEN="YOUR_PROJECT_TOKEN"
 ```
 
-### Create SmartUI Configuration
+### Run tests
 
 ```bash
-npx smartui config:create smartui-web.json
+mvn test
 ```
 
-## 3. Steps to Integrate Screenshot Commands into Codebase
+View results on your TestMu AI dashboard.
 
-The SmartUI screenshot function is already implemented in the repository.
+### Local testing with TestMu AI Tunnel
 
-**Cloud Test** (`src/test/java/com/lambdatest/sdk/SmartUISDKCloud.java`):
-```java
-driver.get("https://www.lambdatest.com");
-SmartUISnapshot.smartuiSnapshot(driver, "screenshot");
-```
+To test locally hosted apps, set up the TestMu AI tunnel. OS-specific guides:
 
-**Local Test** (`src/test/java/com/lambdatest/sdk/SmartUISDKLocal.java`):
-```java
-driver.get("https://www.lambdatest.com");
-SmartUISnapshot.smartuiSnapshot(driver, "screenshot");
-```
+- [Local Testing on Windows](https://www.testmuai.com/support/docs/local-testing-for-windows/)
+- [Local Testing on macOS](https://www.testmuai.com/support/docs/local-testing-for-macos/)
+- [Local Testing on Linux](https://www.testmuai.com/support/docs/local-testing-for-linux/)
 
-**Note**: The code is already configured and ready to use. You can modify the URL and screenshot name if needed.
-
-## 4. Execution and Commands
-
-Pass `--config smartui-web.json` to the SmartUI CLI so it uses this repository’s config (project id, token path, and build naming). Place it **before** `exec` (it is a global CLI option).
-
-### Local Execution
-
-```bash
-npx smartui --config smartui-web.json exec -- mvn test -D suite=sdk-local.xml
-```
-
-### Cloud Execution
-
-```bash
-npx smartui --config smartui-web.json exec -- mvn test -D suite=sdk-cloud.xml
-```
-
-## Test Files
-
-### Cloud Test (`SmartUISDKCloud.java`)
-
-- Connects to TestMu AI Cloud using Selenium Remote WebDriver
-- Reads credentials from environment variables (`LT_USERNAME`, `LT_ACCESS_KEY`)
-- Uses TestNG framework
-- Takes screenshot with name: `screenshot`
-
-### Local Test (`SmartUISDKLocal.java`)
-
-- Runs Selenium locally using Chrome
-- Requires Chrome browser installed
-- Uses TestNG framework
-- Takes screenshot with name: `screenshot`
-
-## Configuration
-
-### Maven Config (`pom.xml`)
-
-The Maven configuration file includes all necessary dependencies for SmartUI and TestNG.
-
-### TestNG Suites
-
-- `sdk-cloud.xml` - TestNG suite for Cloud execution
-- `sdk-local.xml` - TestNG suite for Local execution
-
-### SmartUI Config (`smartui-web.json`)
-
-Create the SmartUI configuration file using:
-```bash
-npx smartui config:create smartui-web.json
-```
-
-## Parallel Testing
-
-To run parallel tests using TestNG:
-
-```bash
-mvn test -D suite=smartui-parallel.xml
-```
-
-## Testing Locally Hosted Projects
-
-You can test locally hosted or privately hosted projects with TestMu AI Selenium grid using TestMu AI Tunnel. Refer to the [TestMu AI Tunnel documentation](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/) for more information.
-
-## Best Practices
-
-### Screenshot Naming
-
-- Use descriptive, unique names for each screenshot
-- Include test context and state (e.g., `homepage-logged-in`, `checkout-step-2`)
-- Follow Java naming conventions (camelCase)
-- Avoid special characters
-
-### When to Take Screenshots
-
-- After critical user interactions
-- Before and after form submissions
-- At different stages of multi-step processes
-- After page state changes
-
-### Java-Specific Tips
-
-- Use explicit waits before taking screenshots
-- Handle exceptions properly
-- Use TestNG annotations for better test organization
-- Leverage TestNG groups for parallel execution
-
-### Example: Screenshot with Waits
+Add the following to your capabilities:
 
 ```java
-WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-wait.until(ExpectedConditions.presenceOfElementLocated(By.id("main-content")));
-SmartUISnapshot.smartuiSnapshot(driver, "homepage");
+capabilities.setCapability("tunnel", true);
 ```
 
-## Common Use Cases
+## Contributions
 
-### Multi-Step Flow Testing
+Contributions are welcome. Open an issue to discuss your idea before submitting a pull request. When reporting bugs, include your Java version, OS, and TestNG version.
 
-```java
-@Test
-public void testCheckoutFlow() {
-    driver.get("https://example.com/checkout");
-    SmartUISnapshot.smartuiSnapshot(driver, "checkout-step-1");
-    
-    driver.findElement(By.id("next-step")).click();
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    wait.until(ExpectedConditions.elementToBeClickable(By.id("complete")));
-    SmartUISnapshot.smartuiSnapshot(driver, "checkout-step-2");
-}
-```
+## TestMu AI (Formerly LambdaTest) Community
 
-### Conditional Screenshots
+Connect with testers and developers in the [TestMu AI Community](https://community.testmuai.com/). Ask questions, share what you are building, and discuss best practices in test automation and DevOps.
+  
+## TestMu AI (Formerly LambdaTest) Certifications
 
-```java
-@Test
-public void testConditionalScreenshot() {
-    driver.get("https://example.com");
-    
-    List<WebElement> userMenu = driver.findElements(By.className("user-menu"));
-    if (!userMenu.isEmpty()) {
-        SmartUISnapshot.smartuiSnapshot(driver, "homepage-logged-in");
-    } else {
-        SmartUISnapshot.smartuiSnapshot(driver, "homepage-guest");
-    }
-}
-```
+Earn free [TestMu AI Certifications](https://www.testmuai.com/certifications/) for testers, developers, and QA engineers. Validate your skills in Selenium, Cypress, Playwright, Appium, Espresso and more. Industry-recognized, shareable on LinkedIn, and built by practitioners, not marketers.
 
-## CI/CD Integration
+## Learning Resources by TestMu AI (Formerly LambdaTest)
 
-### GitHub Actions Example
+Learn modern testing through tutorials, guides, videos, and weekly updates:
 
-```yaml
-name: Java SmartUI Tests
+* [TestMu AI Blog](https://www.testmuai.com/blog/)
+* [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/)
+* [TestMu AI on YouTube](https://www.youtube.com/@TestMuAI)
+* [TestMu AI Newsletter](https://www.testmuai.com/newsletter/)
+  
+## LambdaTest is Now TestMu AI
 
-on: [push, pull_request]
+On **January 12, 2026**, [LambdaTest evolved to TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/), the world's first fully autonomous **Agentic AI Quality Engineering Platform**.
 
-jobs:
-  visual-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-      
-      - name: Install SmartUI CLI
-        run: npm install -g @lambdatest/smartui-cli
-      
-      - name: Build with Maven
-        run: mvn clean compile
-      
-      - name: Run SmartUI tests
-        env:
-          PROJECT_TOKEN: ${{ secrets.SMARTUI_PROJECT_TOKEN }}
-          LT_USERNAME: ${{ secrets.LT_USERNAME }}
-          LT_ACCESS_KEY: ${{ secrets.LT_ACCESS_KEY }}
-        run: |
-          npx smartui --config smartui-web.json exec -- mvn test -D suite=sdk-cloud.xml
-```
+Same team. Same infrastructure. Same customer accounts. All existing LambdaTest logins, scripts, capabilities, and integrations continue to work without change.
 
-### Jenkins Pipeline Example
+ð Find the new home for [LambdaTest](https://www.testmuai.com).
 
-```groovy
-pipeline {
-    agent any
-    
-    tools {
-        maven 'Maven-3.8'
-        jdk 'JDK-17'
-    }
-    
-    environment {
-        PROJECT_TOKEN = credentials('smartui-project-token')
-        LT_USERNAME = credentials('lambdatest-username')
-        LT_ACCESS_KEY = credentials('lambdatest-access-key')
-    }
-    
-    stages {
-        stage('Build') {
-            steps {
-                sh 'mvn clean compile'
-            }
-        }
-        
-        stage('Visual Tests') {
-            steps {
-                sh 'npm install -g @lambdatest/smartui-cli'
-                sh 'npx smartui --config smartui-web.json exec -- mvn test -D suite=sdk-cloud.xml'
-            }
-        }
-    }
-}
-```
+### How LambdaTest Evolved into TestMu AI
 
-## Troubleshooting
+In 2017, we launched LambdaTest with a simple mission: make testing fast, reliable, and accessible. As LambdaTest grew, we expanded into Test Intelligence, Visual Regression Testing, Accessibility Testing, API Testing, and Performance Testing, covering the full depth of the testing lifecycle.
 
-### Issue: `Error: SmartUI Config already exists: smartui-web.json`
+As software development entered the AI era, testing had to evolve, too. We rebuilt the architecture to be AI-native from the ground up, with autonomous agents that **plan, author, execute, analyze, and optimize tests** while keeping humans in the loop. The platform integrates with your repos, CI, IDEs, and terminals, continuously learning from every code change and development signal.
 
-**Solution**: This is informational. The config file already exists. You can proceed or delete and recreate it.
+That evolution earned a new name: **TestMu AI**, built for an AI-first future of quality engineering. TestMu is not a new name for us. It is the name of our annual community conference, which has brought together 100,000+ quality engineers to discuss how AI would reshape testing, long before that became an industry norm. 
 
-### Issue: `PROJECT_TOKEN is required`
+What started as a high-performance cloud testing platform has transformed into an AI-native, multi-agent system powering a connected, end-to-end quality layer. That evolution defined a new identity: LambdaTest evolved into TestMu AI, built for an AI-first future of quality engineering.
 
-**Solution**: Ensure the environment variable is set:
-```bash
-export PROJECT_TOKEN='your_project_token'
-# Verify
-echo $PROJECT_TOKEN
-```
+## Support
 
-### Issue: `Could not find or load main class`
-
-**Solution**: Build the project first:
-```bash
-mvn clean compile
-```
-
-### Issue: `ChromeDriver version mismatch` (Local)
-
-**Solution**: 
-1. Update ChromeDriver in `pom.xml`
-2. Ensure Chrome browser is up to date
-3. Use WebDriverManager for automatic driver management
-
-### Issue: `Unauthorized` error (Cloud)
-
-**Solution**:
-1. Verify `LT_USERNAME` and `LT_ACCESS_KEY` are set correctly
-2. Check credentials in [TestMu AI Profile Settings](https://accounts.lambdatest.com/profile)
-3. Ensure no extra spaces in environment variables
-
-### Issue: TestNG suite not found
-
-**Solution**: Verify the suite XML file exists and path is correct:
-```bash
-ls -la sdk-*.xml
-mvn test -D suite=sdk-cloud.xml
-```
-
-## Configuration Tips
-
-### TestNG Suite Configuration
-
-**For Cloud** (`sdk-cloud.xml`):
-```xml
-<suite name="SmartUI Cloud Suite">
-    <test name="Cloud Tests">
-        <classes>
-            <class name="com.lambdatest.sdk.SmartUISDKCloud"/>
-        </classes>
-    </test>
-</suite>
-```
-
-**For Local** (`sdk-local.xml`):
-```xml
-<suite name="SmartUI Local Suite">
-    <test name="Local Tests">
-        <classes>
-            <class name="com.lambdatest.sdk.SmartUISDKLocal"/>
-        </classes>
-    </test>
-</suite>
-```
-
-### Maven Configuration Tips
-
-Add to `pom.xml` for better dependency management:
-```xml
-<properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-</properties>
-```
-
-## Parallel Testing
-
-### Running Parallel Tests
-
-```bash
-mvn test -D suite=smartui-parallel.xml
-```
-
-Configure parallel execution in TestNG suite XML:
-```xml
-<suite name="Parallel Suite" parallel="tests" thread-count="3">
-    <test name="Test 1">
-        <!-- Test configuration -->
-    </test>
-    <test name="Test 2">
-        <!-- Test configuration -->
-    </test>
-</suite>
-```
-
-## View Results
-
-After running the tests, visit your SmartUI project dashboard to view the captured screenshots and compare them with baseline builds.
-
-## Additional Resources
-
-- [SmartUI Selenium Java Onboarding Guide](https://www.testmuai.com/support/docs/smartui-onboarding-selenium-java/)
-- [TestMu AI Selenium Java Documentation](https://www.testmuai.com/support/docs/selenium-java/)
-- [TestNG Documentation](https://testng.org/doc/documentation-main.html)
-- [Maven Documentation](https://maven.apache.org/guides/)
-- [SmartUI Dashboard](https://smartui.lambdatest.com/)
-- [TestMu AI Automation Dashboard](https://automation.lambdatest.com/)
-- [TestMu AI Community](https://community.testmuai.com/)
-- [TestMu AI Blog](https://www.testmuai.com/blog/)
-- [TestMu AI Learning Hub](https://www.testmuai.com/learning-hub/)
-
-## 🚀 LambdaTest is Now TestMu AI
-
-👋 Welcome to TestMu AI, the next evolution of LambdaTest. As of January 2026, [LambdaTest is Now TestMu AI](https://www.testmuai.com/lambdatest-is-now-testmuai/) - we have evolved from a cross-browser testing cloud into a unified, AI-native quality engineering platform designed for the modern DevOps era.
-
-Whether you have been part of the LambdaTest community for years or are just discovering TestMu AI, our mission remains the same: to help you ship faster with high-scale test execution, autonomous testing, and deep quality analytics.
-
-### 🔄 Our Rebrand Journey
-
-In 2017, we introduced LambdaTest with a clear mission: to become the world's most trusted cloud testing platform. We built a scalable, high-performance test cloud that eliminated flakiness, improved developer feedback cycles, and accelerated release velocity for teams worldwide.
-
-As LambdaTest grew, we expanded the platform into Test Intelligence, Visual Regression Testing, Accessibility Testing, API Testing, and Performance Testing, covering the entire testing lifecycle. These capabilities enabled teams to test any stack, on any technology, at enterprise scale.
-
-Over time, we rebuilt the architecture to be AI-native from the ground up. What began as LambdaTest's high-performance testing cloud has now evolved into TestMu AI, an AI-native, multi-agent platform redefining modern quality engineering.
-
-We chose the name TestMu AI to reflect our shift towards intelligent, autonomous testing. While our identity has changed, our core technology and commitment to the testing community stay the same.
-
-👉 Find [LambdaTest's New Home](https://www.testmuai.com/).
-
-### 🔭 Explore TestMu AI
-
-The same infrastructure LambdaTest customers relied on, now delivered through autonomous AI agents.
-
-- [KaneAI](https://www.testmuai.com/kane-ai/)
-- [Agent-to-Agent Testing](https://www.testmuai.com/agent-to-agent-testing/)
-- [HyperExecute](https://www.testmuai.com/hyperexecute/)
-- [Real Device Cloud](https://www.testmuai.com/real-device-cloud/)
-- [Pricing](https://www.testmuai.com/pricing/)
-- [Documentation](https://www.testmuai.com/support/docs/)
+Got a question? Email [support@testmuai.com](mailto:support@testmuai.com) or chat with us 24x7 from our chat portal.
