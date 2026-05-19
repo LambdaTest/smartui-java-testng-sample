@@ -37,6 +37,9 @@ public class TestNGSmartUI {
     caps.setCapability("name", m.getName() + " - " + this.getClass().getName());
     caps.setCapability("plugin", "git-testng");
     caps.setCapability("smartUI.project", "testng-smartui-web-project");
+    if(System.getenv("BUILD_NAME")!=null && System.getenv("BUILD_NAME")!=""){
+      caps.setCapability("smartUI.build",System.getenv("BUILD_NAME"));
+    }
     caps.setCapability("selenium_version", "4.8.0");
 
     if (githubURL != null) {
